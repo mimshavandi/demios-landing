@@ -1,0 +1,4 @@
+# Secret scanning (ADR-0009). Default rules, no allowlist. Add an allowlist entry only
+# with a PR that explains why the match is not a secret.
+[extend]
+useDefault = true
