@@ -74,7 +74,7 @@
 
     <h3 id="automated-checks">Automated checks</h3>
     <ul class="list">
-      <li>An end-to-end test runs the real app on Linux, in CI. It sends a message with the keyboard (<kbd>Enter</kbd>), stops the answer with <kbd>⌘.</kbd> or <kbd>Ctrl+.</kbd>, and runs <strong>axe-core</strong> on the screen. The test fails on any serious or critical axe finding.</li>
+      <li>An end-to-end test runs the real app on Linux and Windows, in CI. It sends a message with the keyboard (<kbd>Enter</kbd>), stops the answer with <kbd>⌘.</kbd> or <kbd>Ctrl+.</kbd>, and runs <strong>axe-core</strong> on the screen. The test fails on any serious or critical axe finding.</li>
       <li>UI unit tests find controls by their accessible role and name. This catches missing labels.</li>
     </ul>
 
@@ -83,7 +83,6 @@
 
     <h2 id="gaps">Known gaps</h2>
     <ul class="list">
-      <li><strong>Windows:</strong> the end-to-end and axe checks do not run on Windows yet, because the WebView2 driver session fails in CI. The job exists but does not block a release.</li>
       <li><strong>macOS:</strong> WKWebView has no WebDriver, so all macOS checks are manual, from a release checklist.</li>
       <li><strong>Screen readers:</strong> no full pass has been done yet with VoiceOver (macOS), NVDA or Narrator (Windows), or Orca (Linux). Until one has, we will not tick any store's "accessible" box.</li>
       <li><strong>Generated content:</strong> answers and artifacts (pages, apps and diagrams the model writes) are written by the AI model you choose. We cannot guarantee that they are accessible: an artifact may lack alt text, headings, labels or enough contrast. You can ask the model to fix this.</li>
