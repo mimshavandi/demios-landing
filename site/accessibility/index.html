@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accessibility statement · Demios Desktop</title>
+<meta name="description" content="What Demios Desktop and demios.io do for accessibility today, what we check, and the gaps we know about.">
+<meta name="theme-color" content="#FAFAFB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111115" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Demios">
+<meta property="og:title" content="Accessibility statement · Demios Desktop">
+<meta property="og:description" content="Our target is WCAG 2.2 level AA. What we check today and the gaps we know about.">
+<meta property="og:url" content="https://demios.io/accessibility/">
+<link rel="canonical" href="https://demios.io/accessibility/">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/icon-128.png">
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/icon-128.png" alt="" width="28" height="28">Demios</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="/#get-it">Get it</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="https://github.com/mimshavandi/demios-desktop">Source code</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <article class="doc wrap wrap-narrow">
+    <h1>Demios Desktop accessibility statement</h1>
+
+    <div class="callout callout-warning" role="note">
+      <p><strong>Draft: pending owner approval.</strong> The owner approves the final text before it is published and linked from the app. Still open: the reply time.</p>
+    </div>
+
+    <p class="meta">Last reviewed: set on publication · App version: 0.1.0</p>
+    <p>Demios Desktop is published by DigiNote Inc.</p>
+
+    <h2 id="goal">Our goal</h2>
+    <p>We want Demios Desktop to be usable by everyone, including people who use a keyboard only, screen readers, magnification or high-contrast settings. Our target is <strong>WCAG 2.2 level AA</strong>, applied to a desktop app (see EN 301 549, chapter 11). The app <strong>does not claim full conformance yet</strong>. This page says what we check today and what we know is missing.</p>
+
+    <h2 id="today">What we do today</h2>
+    <h3 id="design-rules">Design rules</h3>
+    <ul class="list">
+      <li>Every control has an accessible name, role and state.</li>
+      <li>A streaming answer is announced once, politely, when it is finished, not word by word. The app uses a hidden <code>aria-live="polite"</code> status region for this.</li>
+      <li>Focus moves on purpose: a new chat puts focus in the message box, closing a dialog returns focus to the button that opened it, and a new approval card takes focus unless you are typing.</li>
+      <li>The interface language is declared (<code>lang="en"</code>).</li>
+      <li>Keyboard shortcuts (on Windows and Linux, use <kbd>Ctrl</kbd> instead of <kbd>⌘</kbd>):</li>
+    </ul>
+    <div class="table-wrap">
+      <table>
+        <caption>Keyboard shortcuts</caption>
+        <thead><tr><th scope="col">Shortcut</th><th scope="col">Action</th></tr></thead>
+        <tbody>
+          <tr><td><kbd>⌘N</kbd></td><td>New chat</td></tr>
+          <tr><td><kbd>⌘\</kbd></td><td>Show or hide the sidebar</td></tr>
+          <tr><td><kbd>⌘,</kbd></td><td>Settings</td></tr>
+          <tr><td><kbd>⌘.</kbd></td><td>Stop the answer being written</td></tr>
+          <tr><td><kbd>⌘⇧C</kbd></td><td>Copy the last answer</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>On an approval card, <kbd>⌘↵</kbd> allows once and <kbd>Esc</kbd> denies. In Settings, the Left and Right arrow keys move between tabs.</p>
+
+    <h3 id="automated-checks">Automated checks</h3>
+    <ul class="list">
+      <li>An end-to-end test runs the real app on Linux, in CI. It sends a message with the keyboard (<kbd>Enter</kbd>), stops the answer with <kbd>⌘.</kbd> or <kbd>Ctrl+.</kbd>, and runs <strong>axe-core</strong> on the screen. The test fails on any serious or critical axe finding.</li>
+      <li>UI unit tests find controls by their accessible role and name. This catches missing labels.</li>
+    </ul>
+
+    <h3 id="before-release">Before each release</h3>
+    <p>We walk through the main flow (start a chat, send, stop, approve a tool call, change settings) using only the keyboard.</p>
+
+    <h2 id="gaps">Known gaps</h2>
+    <ul class="list">
+      <li><strong>Windows:</strong> the end-to-end and axe checks do not run on Windows yet, because the WebView2 driver session fails in CI. The job exists but does not block a release.</li>
+      <li><strong>macOS:</strong> WKWebView has no WebDriver, so all macOS checks are manual, from a release checklist.</li>
+      <li><strong>Screen readers:</strong> no full pass has been done yet with VoiceOver (macOS), NVDA or Narrator (Windows), or Orca (Linux). Until one has, we will not tick any store's "accessible" box.</li>
+      <li><strong>Generated content:</strong> answers are written by the AI model you choose. We cannot guarantee that they are accessible: they may lack headings, descriptions or structure. You can ask the model to fix this.</li>
+      <li><strong>Links in answers</strong> cannot be opened yet.</li>
+      <li><strong>Not yet checked:</strong> high-contrast and forced-colours modes, zoom to 200%, and reduced motion.</li>
+    </ul>
+
+    <h2 id="website">This website</h2>
+    <p>demios.io aims for WCAG 2.2 level AA too. It is plain HTML and CSS with no scripts. Each page has a skip link, landmarks and headings in order, a visible focus outline, and text alternatives for images. It follows your system's light or dark setting with the app's colours, turns off animation when you ask for reduced motion, and works at 200% zoom and on screens 320 pixels wide without scrolling sideways. Before each change goes live, an automated check validates the HTML and every link between its pages.</p>
+    <p>Not checked yet on the website: a full screen-reader pass.</p>
+
+    <h2 id="report">Report a problem</h2>
+    <p>If something in the app or on this website is hard or impossible to use, please tell us at <a href="mailto:mahdi@demios.io">mahdi@demios.io</a>, or use <strong>Report a problem</strong> in <strong>Settings → General → About</strong>. Tell us your operating system, any assistive technology you use, and what you were trying to do. <em>(Reply time to be confirmed.)</em></p>
+    <p>This statement is voluntary and is not a legal declaration of conformity.</p>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <ul>
+      <li><a href="/privacy/">Privacy</a></li>
+      <li><a href="/accessibility/" aria-current="page">Accessibility</a></li>
+      <li><a href="https://github.com/mimshavandi/demios-desktop">Source code</a></li>
+      <li><a href="mailto:mahdi@demios.io">mahdi@demios.io</a></li>
+    </ul>
+    <p>© 2026 DigiNote Inc.</p>
+  </div>
+</footer>
+</body>
+</html>

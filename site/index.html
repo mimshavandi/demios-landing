@@ -3,23 +3,165 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Demios</title>
-<meta name="description" content="Demios Desktop: an open-source desktop app for chatting with AI models you choose.">
-<style>
-:root{--bg:#FAFAFB;--text:#16161D;--muted:#4B4B58;--accent:#4436BF;color-scheme:light}
-@media (prefers-color-scheme:dark){:root{--bg:#111115;--text:#EDEDF2;--muted:#B6B6C2;--accent:#A1AAEF;color-scheme:dark}}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
-main{max-width:40rem;margin:0 auto;padding:4rem max(16px,env(safe-area-inset-left)) 4rem}
-h1{font-size:2rem;line-height:1.2;margin:0 0 1rem}
-p{color:var(--muted)}a{color:var(--accent)}
-</style>
+<title>Demios Desktop: chat with AI models you choose</title>
+<meta name="description" content="Demios Desktop is an open-source desktop app for chatting with AI models you choose: one running on your own computer, or a provider you reach with your own API key. No account needed.">
+<meta name="theme-color" content="#FAFAFB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111115" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Demios">
+<meta property="og:title" content="Demios Desktop: chat with AI models you choose">
+<meta property="og:description" content="An open-source desktop app for chatting with AI models on your own computer, or with your own provider API keys. No account, nothing sent to us.">
+<meta property="og:url" content="https://demios.io/">
+<link rel="canonical" href="https://demios.io/">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/icon-128.png">
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-<main>
-<h1>Demios Desktop</h1>
-<p>An open-source desktop app for chatting with AI models you choose: one running on your own computer, or a provider you reach with your own API key. No account needed.</p>
-<p>The full website is on its way. Until then, the code and build instructions are on <a href="https://github.com/mimshavandi/demios-desktop">GitHub</a>.</p>
-<p>© 2026 DigiNote Inc. · <a href="mailto:mahdi@demios.io">mahdi@demios.io</a></p>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/icon-128.png" alt="" width="28" height="28">Demios</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="#get-it">Get it</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="https://github.com/mimshavandi/demios-desktop">Source code</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <div class="wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-icon" src="/assets/icon-128.png" alt="" width="64" height="64">
+      <h1 id="hero-title">Demios Desktop</h1>
+      <p class="hero-text">An open-source desktop app for chatting with AI models you choose: one running on your own computer, or a provider you reach with your own API key. No account needed.</p>
+      <div class="actions">
+        <a class="button button-primary" href="#get-it">Build from source</a>
+        <a class="button button-secondary" href="https://github.com/mimshavandi/demios-desktop">View the code on GitHub</a>
+      </div>
+      <p class="status-note">Early and pre-release (version 0.1.0) for macOS, Windows and Linux. There are no installers yet.</p>
+    </section>
+
+    <section class="section" aria-labelledby="why">
+      <h2 id="why">Why Demios Desktop</h2>
+      <ul class="grid">
+        <li class="card">
+          <h3>Local first</h3>
+          <p>Chats and settings stay in a database on your computer. Models from the catalogue run on your machine, and nothing leaves it.</p>
+        </li>
+        <li class="card">
+          <h3>Your keys stay yours</h3>
+          <p>Provider API keys are stored in your operating system's keychain, not in a file.</p>
+        </li>
+        <li class="card">
+          <h3>Nothing is sent to us</h3>
+          <p>There is no Demios account, server, analytics or crash reporting.</p>
+        </li>
+        <li class="card">
+          <h3>Open source</h3>
+          <p>Apache-2.0 licence. Read the code, build it yourself, change it.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="today">
+      <h2 id="today">What it does today</h2>
+      <ul class="list">
+        <li>Chat with streamed answers, with Markdown and highlighted code blocks. Stop an answer mid-way (<kbd>⌘.</kbd> or <kbd>Ctrl+.</kbd>) and retry it.</li>
+        <li>Keep conversations on your computer between launches, and delete them with Undo.</li>
+        <li>Run models on your computer with llama.cpp: download one of 12 open models from a built-in catalogue. Each shows whether it fits your machine and its licence. Downloads can be paused, resume after an interruption, and are checked against their SHA-256.</li>
+        <li>Use your own API key for Anthropic, OpenAI or Google Gemini.</li>
+        <li>Add tool servers (MCP) in <strong>Settings → Models → Tool servers</strong>: a program on your computer or a remote server over HTTPS, with sign-in for servers that need it.</li>
+        <li>See where your data goes in <strong>Settings → General</strong>, and remove everything with <strong>Delete all local data</strong>, after a confirmation that lists what will go.</li>
+        <li>A notice on first run, and a line under the message box, say that answers come from the model you chose and can be wrong.</li>
+        <li>Light and dark appearance that follows your system, and keyboard shortcuts for the main actions.</li>
+        <li>Report a problem, or a single answer, through a prefilled form on GitHub. Nothing from your chats is sent.</li>
+        <li>The <code>dn</code> command-line tool: run a model, check whether it fits, and browse and download models from Hugging Face.</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="privacy-safety">
+      <h2 id="privacy-safety">Privacy and safety</h2>
+      <p class="section-lead">You decide where each message goes, and tools don't act without your say.</p>
+      <h3>Where your messages go</h3>
+      <ul class="list">
+        <li><strong>A model on this device:</strong> nothing leaves your computer.</li>
+        <li><strong>A provider you added a key for:</strong> your messages in that chat go to that provider, under your own account with them.</li>
+        <li><strong>Model downloads:</strong> browsing and downloading models contacts Hugging Face. Your chats are never sent there.</li>
+      </ul>
+      <h3>Tools ask first</h3>
+      <ul class="list">
+        <li>Tools a server marks as read-only run without asking.</li>
+        <li>Every other tool asks first. A card in the chat shows the exact arguments, and the tool runs only after you choose <strong>Allow once</strong>. Tools that only change local data can be allowed for the whole chat. If you don't answer within 10 minutes, the tool doesn't run.</li>
+        <li>A remote server isn't trusted to call its own tools harmless, so none of its tools run without asking.</li>
+        <li>A tool server on your computer needs your OK before it starts. A system dialog shows the exact command, and asks again if the command changes. It runs with your permissions, so add only programs you trust.</li>
+      </ul>
+      <p>More detail is in the <a href="/privacy/">privacy policy</a>.</p>
+    </section>
+
+    <section class="section" aria-labelledby="next">
+      <h2 id="next">Coming next</h2>
+      <p class="section-lead">Not in the app yet:</p>
+      <ul class="list">
+        <li>Artifacts: documents, code and small apps the model makes, opened in a side pane.</li>
+        <li>Connecting the app to an OpenAI-compatible server, such as Ollama. The <code>dn</code> tool can already do this.</li>
+        <li>Adding models from Hugging Face in the app. The <code>dn</code> tool can already do this.</li>
+        <li>Signed installers for macOS, Windows and Linux.</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="get-it">
+      <h2 id="get-it" tabindex="-1">Get it</h2>
+      <h3>Releases</h3>
+      <p>There are no releases or signed installers yet. When the first one is out, it will be on <a href="https://github.com/mimshavandi/demios-desktop/releases">GitHub Releases</a>.</p>
+
+      <h3>Build from source</h3>
+      <p>You need:</p>
+      <ul class="list">
+        <li><strong>Rust</strong> 1.89 or newer (stable, with <code>rustfmt</code> and <code>clippy</code>).</li>
+        <li><strong>Node.js</strong> 22 and npm.</li>
+        <li><strong>CMake and a C/C++ compiler</strong>: llama.cpp, which runs local models, is compiled from source.</li>
+        <li><strong>Platform webview libraries:</strong>
+          <ul class="list">
+            <li>macOS: Xcode Command Line Tools (<code>xcode-select --install</code>).</li>
+            <li>Linux (Debian/Ubuntu): <code>sudo apt-get install libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev libxdo-dev libssl-dev</code></li>
+            <li>Windows: the WebView2 runtime (included with Windows 10 and 11) and the Visual Studio C++ build tools.</li>
+          </ul>
+        </li>
+      </ul>
+      <p>Then build and run:</p>
+<pre><code>git clone https://github.com/mimshavandi/demios-desktop.git
+cd demios-desktop/apps/desktop
+npm ci
+
+npm run dev:app      # app window with a built-in test model, no key or download needed
+npm run tauri dev    # app window with no model: connect one in Settings
+npm run tauri build  # optimised build; the output is in target/release/bundle</code></pre>
+      <p>The test model in <code>dev:app</code> gives canned answers and is never part of an optimised build. The <a href="https://github.com/mimshavandi/demios-desktop#readme">README</a> and the <a href="https://github.com/mimshavandi/demios-desktop/tree/main/docs/user">user guide</a> have the details.</p>
+    </section>
+
+    <section class="section" aria-labelledby="open-source">
+      <h2 id="open-source">Open source</h2>
+      <p>Demios Desktop is licensed under Apache-2.0. The code, the <a href="https://github.com/mimshavandi/demios-desktop/blob/main/CHANGELOG.md">changelog</a> and the issue tracker are on <a href="https://github.com/mimshavandi/demios-desktop">GitHub</a>. Contributions are welcome. Please report security problems privately, as described in <a href="https://github.com/mimshavandi/demios-desktop/blob/main/SECURITY.md">SECURITY.md</a>.</p>
+    </section>
+  </div>
 </main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <ul>
+      <li><a href="/privacy/">Privacy</a></li>
+      <li><a href="/accessibility/">Accessibility</a></li>
+      <li><a href="https://github.com/mimshavandi/demios-desktop">Source code</a></li>
+      <li><a href="mailto:mahdi@demios.io">mahdi@demios.io</a></li>
+    </ul>
+    <p>© 2026 DigiNote Inc.</p>
+  </div>
+</footer>
 </body>
 </html>
