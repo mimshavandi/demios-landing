@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy · Demios Desktop</title>
+<meta name="description" content="How Demios Desktop and demios.io handle your data: nothing reaches us, your data stays on your computer, and the services you choose get only what they need.">
+<meta name="theme-color" content="#FAFAFB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111115" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Demios">
+<meta property="og:title" content="Privacy policy · Demios Desktop">
+<meta property="og:description" content="Nothing reaches us. Your chats, settings and keys stay on your computer.">
+<meta property="og:url" content="https://demios.io/privacy/">
+<link rel="canonical" href="https://demios.io/privacy/">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/icon-128.png">
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/icon-128.png" alt="" width="28" height="28">Demios</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="/#get-it">Get it</a></li>
+        <li><a href="/privacy/" aria-current="page">Privacy</a></li>
+        <li><a href="https://github.com/mimshavandi/demios-desktop">Source code</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <article class="doc wrap wrap-narrow">
+    <h1>Demios Desktop privacy policy</h1>
+
+    <div class="callout callout-warning" role="note">
+      <p><strong>Draft: pending owner approval.</strong> The owner approves the final text before it is published and linked from the app. Still open: the postal address, the publication URL, and for the GDPR section the legal basis, retention period and the right to complain to a supervisory authority when someone contacts us. Every statement below was checked against the app's code.</p>
+    </div>
+
+    <p class="meta">Last updated: set on publication</p>
+
+    <h2 id="who-we-are">Who we are</h2>
+    <p>Demios Desktop ("the app") is an open-source desktop app licensed under Apache-2.0. It is published by <strong>DigiNote Inc.</strong>, <em>(postal address to be added)</em>, which is responsible for this policy. DigiNote Inc. is also the provider of the app under the EU AI Act. App id: <code>io.demios.app</code>.</p>
+    <p>Contact: <a href="mailto:mahdi@demios.io">mahdi@demios.io</a></p>
+
+    <h2 id="short-version">The short version</h2>
+    <ul class="list">
+      <li><strong>We collect nothing.</strong> The app has no account, no analytics, no crash reporting and no Demios server. Nothing you do in the app is sent to us.</li>
+      <li>Your chats, settings and tool history stay on your computer.</li>
+      <li>Your API keys and tokens are kept in your operating system's keychain.</li>
+      <li>When you choose an online AI provider, a model download or a tool server, the app connects <strong>directly</strong> to that service for you. That service's own terms and privacy policy apply.</li>
+    </ul>
+
+    <h2 id="what-the-app-collects">What the app collects</h2>
+    <p>Nothing reaches us. The app has no code that sends usage data, crash reports or identifiers to the publisher, and no setting that turns any such thing on.</p>
+
+    <h2 id="on-your-device">What stays on your device</h2>
+    <p>The app keeps its data in a SQLite database called <code>demios.sqlite3</code>, in your operating system's app-data folder:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">System</th><th scope="col">Folder</th></tr></thead>
+        <tbody>
+          <tr><td>macOS</td><td><code>~/Library/Application Support/io.demios.app/</code></td></tr>
+          <tr><td>Windows</td><td><code>%LOCALAPPDATA%\io.demios.app\</code></td></tr>
+          <tr><td>Linux</td><td><code>$XDG_DATA_HOME/io.demios.app/</code>, usually <code>~/.local/share/io.demios.app/</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Settings → General → About</strong> in the app shows the exact folder.</p>
+    <p>The database holds:</p>
+    <ul class="list">
+      <li><strong>Conversations:</strong> title, messages, the model that answered, and timestamps.</li>
+      <li><strong>Settings:</strong> which model you chose for each task, the tool servers you added, and which local server commands you allowed to start. It stores only the <em>names</em> of their credentials, never the credentials themselves.</li>
+      <li><strong>Tool history:</strong> for each tool call the app makes, the tool name, the arguments, the result or error, and timestamps. This history lets the app avoid repeating an action by accident.</li>
+    </ul>
+    <p>Other things stored locally:</p>
+    <ul class="list">
+      <li><strong>Interface preferences</strong>, for example whether the sidebar is open, in the app window's own storage.</li>
+      <li><strong>Model files</strong> you download: <code>demios/models/</code> in your user data folder (<code>~/Library/Application Support</code> on macOS, <code>%LOCALAPPDATA%</code> on Windows, <code>~/.local/share</code> on Linux), or the folder set in <code>DN_MODELS_DIR</code>. <strong>Settings → General → About</strong> shows it. The <code>dn</code> command-line tool uses the same folder.</li>
+    </ul>
+    <p>Nothing in these folders is uploaded anywhere by the app.</p>
+
+    <h2 id="keys">Keys and secrets</h2>
+    <p>API keys for AI providers, and the secrets and sign-ins for tool servers, are stored in your system keychain: macOS Keychain, Windows Credential Manager, or the Secret Service on Linux (for example GNOME Keyring or KWallet). They are stored under the service name <code>io.demios.app</code>.</p>
+    <p>They are never written to the database or to logs, and the app never shows them back to you. Local tool programs the app starts don't receive them in their environment, except a credential you have explicitly assigned to that server.</p>
+
+    <h2 id="third-parties">What goes to third parties you choose</h2>
+    <p>The app only contacts these services when you set them up or start an action. Each one receives the data described here, under <strong>its own</strong> terms and privacy policy. We have no access to it and are not responsible for how they handle it.</p>
+
+    <h3 id="providers">AI providers (your own key)</h3>
+    <p>When you add a key for Anthropic, OpenAI or Google Gemini and use one of their models, the app sends requests straight from your computer to that provider (<code>api.anthropic.com</code>, <code>api.openai.com</code>, <code>generativelanguage.googleapis.com</code>), under your account with them. A request contains:</p>
+    <ul class="list">
+      <li>the messages in the conversation, including any tool results in it,</li>
+      <li>the list of tools available to the model,</li>
+      <li>your API key, which the provider uses to identify you.</li>
+    </ul>
+    <p>Provider privacy policies: <a href="https://www.anthropic.com/legal/privacy">Anthropic</a>, <a href="https://openai.com/policies/privacy-policy">OpenAI</a>, <a href="https://policies.google.com/privacy">Google</a>.</p>
+    <p>If you use a <strong>model on this device</strong> instead, the conversation is processed on your computer and is not sent anywhere.</p>
+
+    <h3 id="hugging-face">Hugging Face (model downloads)</h3>
+    <p>Model files are downloaded directly from Hugging Face (<code>huggingface.co</code>). Like any web server, Hugging Face sees your IP address, the file you asked for and standard request headers. No Demios account or Hugging Face account is needed. Before you download, the app shows the model's licence and a link to its model card. Your chats are never sent to Hugging Face. <a href="https://huggingface.co/privacy">Hugging Face privacy policy</a>.</p>
+    <p>The <code>dn</code> command-line tool can also search Hugging Face and download from it, and can use a mirror you set with <code>HF_ENDPOINT</code>. Your Hugging Face token, if you set one, is sent only to Hugging Face, not to a mirror unless you opt in.</p>
+
+    <h3 id="tool-servers">Tool servers (MCP)</h3>
+    <p>Tool servers let the model use tools. You add them in <strong>Settings → Models → Tool servers</strong>. There are two kinds:</p>
+    <ul class="list">
+      <li><strong>Local servers</strong> are programs on your computer that the app starts for you. Before a program starts for the first time, and again whenever its command changes, the app asks you in a system dialog that shows the exact command. A local server runs with your permissions: it can read and change your files and reach the internet on its own, according to what the program does. Only add servers you trust.</li>
+      <li><strong>Remote servers</strong> are online services. The app connects to them over HTTPS. If a server needs you to sign in, <strong>Sign in</strong> opens its sign-in page in your browser, and the server sees the app as the client "Demios Desktop". <strong>Sign out</strong> deletes the stored sign-in.</li>
+    </ul>
+    <p>When the model calls a tool, the server receives the <strong>arguments of that call</strong>. These can contain parts of your conversation. The tool's answer comes back into the conversation, so it is also sent to your AI provider if you use one.</p>
+    <p>Tools that change something ask for your approval first: every time, or, for tools that only change local data, once per chat if you choose. Tools a server marks as read-only run <strong>without asking</strong>, so their arguments are sent without a prompt. A remote server is never trusted to mark its own tools read-only, so none of its tools run without asking. Each server's own policy applies.</p>
+
+    <h3 id="links">Links in answers</h3>
+    <p>Links in model answers don't open when you select them. The app never opens them on its own.</p>
+
+    <h3 id="reporting">Reporting a problem</h3>
+    <p><strong>Report a problem</strong> and <strong>Report this answer</strong> open a form on GitHub in your browser. The form is prefilled with the app version, your operating system and, for an answer, the model's identifier. No chat content is included; you decide what to write. What you send is public on GitHub and is handled under <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p>
+
+    <h2 id="children">Children</h2>
+    <p>The app is not meant for children under 13 (or the minimum age in your country). We collect no data from anyone, including children. The AI model you choose can produce content that isn't suitable for children: the app doesn't filter it.</p>
+
+    <h2 id="choices">Your choices and how to delete data</h2>
+    <p>Because your data is on your own computer, you control it:</p>
+    <ul class="list">
+      <li><strong>Delete a chat:</strong> select the delete button next to it in the sidebar. You can undo this for 10 seconds. At the next start of the app, its messages and its tool history are removed for good. Only the chat's internal id and the time it was deleted are kept, with no title, model or content.</li>
+      <li><strong>Remove a tool server:</strong> go to <strong>Settings → Models → Tool servers</strong> and select the remove button next to it. After a confirmation, this deletes its settings, the secrets and sign-in saved for it in your keychain, and the "Allow in this chat" approvals for its tools. Chats that used its tools keep their history.</li>
+      <li><strong>Remove an API key:</strong> go to <strong>Settings → Models → Provider keys</strong> and select <strong>Remove key</strong>. The key is removed from the keychain straight away and held in memory for a few seconds, so you can undo.</li>
+      <li><strong>Delete everything:</strong> go to <strong>Settings → General</strong> and select <strong>Delete all local data</strong>. After a confirmation that lists what will go, it deletes the database (every chat, including recently deleted ones and their deletion records, your settings and tool history), downloaded models, the keys and sign-ins Demios saved in your keychain, and the app window's own storage. This can't be undone.</li>
+      <li><strong>Uninstalling</strong> removes the app but not your data folder, your models or your keychain entries. Use <strong>Delete all local data</strong> first, or delete them yourself.</li>
+      <li><strong>Data held by providers, Hugging Face, tool servers or GitHub</strong> is controlled by them. Use their tools or contact them.</li>
+    </ul>
+
+    <h3 id="gdpr">GDPR and similar laws</h3>
+    <p>We don't process your personal data in the app, because nothing reaches us. Everything stays on your device or goes directly to services you choose, which are responsible for it under their own policies. If you contact us by email or through a GitHub issue, we use what you send only to answer you.</p>
+
+    <h2 id="website">This website</h2>
+    <p>demios.io sets no cookies, runs no scripts, and has no analytics, trackers or embedded content. Every file it loads (pages, styles and icons) comes from demios.io itself; nothing is loaded from anyone else. Links to other sites, such as GitHub, only take you there when you select them.</p>
+    <p>The site is hosted on GitHub Pages. Like any web server, GitHub receives your IP address and standard request headers when you visit, under <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>. We don't receive or keep visitor logs.</p>
+
+    <h2 id="changes">Changes to this policy</h2>
+    <p>If the app starts sending any data to us (for example an update check or optional crash reports), we will update this policy <strong>before</strong> that version is released and describe the change in the release notes. Anything like that will be opt-in unless this policy says otherwise. The latest version is always at <em>(publication URL to be confirmed)</em>, and earlier versions are in the project's public repository.</p>
+
+    <h2 id="contact">Contact</h2>
+    <p>DigiNote Inc. · <a href="mailto:mahdi@demios.io">mahdi@demios.io</a> · <em>(postal address to be added)</em> · <a href="https://github.com/mimshavandi/demios-desktop/issues">GitHub issues</a></p>
+    <p>For security problems, see <a href="https://github.com/mimshavandi/demios-desktop/blob/main/SECURITY.md">SECURITY.md</a>.</p>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <ul>
+      <li><a href="/privacy/" aria-current="page">Privacy</a></li>
+      <li><a href="/accessibility/">Accessibility</a></li>
+      <li><a href="https://github.com/mimshavandi/demios-desktop">Source code</a></li>
+      <li><a href="mailto:mahdi@demios.io">mahdi@demios.io</a></li>
+    </ul>
+    <p>© 2026 DigiNote Inc.</p>
+  </div>
+</footer>
+</body>
+</html>
