@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Download Demios Desktop (preview)</title>
+<meta name="description" content="Download the preview release of Demios Desktop for macOS, Windows and Linux. The installers are unsigned: here is how to check and open them.">
+<meta name="theme-color" content="#FAFAFB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111115" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Demios">
+<meta property="og:title" content="Download Demios Desktop (preview)">
+<meta property="og:description" content="Unsigned preview installers for macOS, Windows and Linux, with their sizes and SHA-256 checksums.">
+<meta property="og:url" content="https://demios.io/download/">
+<link rel="canonical" href="https://demios.io/download/">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/icon-128.png">
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/download.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/icon-128.png" alt="" width="28" height="28">Demios</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="/download/" aria-current="page">Download</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="https://github.com/mimshavandi/demios-desktop">Source code</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <article class="doc wrap wrap-narrow">
+    <h1>Download Demios Desktop</h1>
+    <p class="meta">Preview release TAG-TBD · version 0.1.0 · <a href="https://github.com/mimshavandi/demios-desktop/releases/tag/TAG-TBD">Release notes on GitHub</a></p>
+
+    <div class="callout callout-warning" role="note">
+      <p><strong>This is a preview, and the installers are unsigned.</strong> Your system will warn you that it can't check who made the app. The steps for each system are below. Check the SHA-256 of your download first.</p>
+    </div>
+
+    <div id="for-you" class="for-you" hidden>
+      <h2 id="for-you-title">For your computer</h2>
+      <p id="for-you-text"></p>
+      <ul id="for-you-files" class="actions" role="list"></ul>
+    </div>
+
+    <h2 id="before">Before you install</h2>
+    <ul class="list">
+      <li>It's an early preview. Expect rough edges, and please <a href="https://github.com/mimshavandi/demios-desktop/issues">report problems</a>.</li>
+      <li>It doesn't update itself yet. To get a newer version, download it from this page and install it over the old one.</li>
+      <li>Signed versions from the app stores will replace the preview later. Moving to one needs one reinstall.</li>
+      <li>Artifacts (documents, code and small apps the model makes) don't work on Windows yet.</li>
+    </ul>
+
+    <section aria-labelledby="macos" data-os="macos">
+      <h2 id="macos">macOS</h2>
+      <ul class="files">
+        <li class="file" data-os="macos" data-arch="arm">
+          <a class="file-name" href="https://github.com/mimshavandi/demios-desktop/releases/download/TAG-TBD/Demios.Desktop_0.1.0_aarch64.dmg">Demios.Desktop_0.1.0_aarch64.dmg</a>
+          <dl>
+            <dt>For</dt><dd class="file-for">Apple silicon (M1 and later)</dd>
+            <dt>Size</dt><dd class="file-size">SIZE-TBD</dd>
+            <dt>SHA-256</dt><dd><code class="hash">SHA256-TBD</code></dd>
+          </dl>
+        </li>
+        <li class="file" data-os="macos" data-arch="x86">
+          <a class="file-name" href="https://github.com/mimshavandi/demios-desktop/releases/download/TAG-TBD/Demios.Desktop_0.1.0_x64.dmg">Demios.Desktop_0.1.0_x64.dmg</a>
+          <dl>
+            <dt>For</dt><dd class="file-for">Intel Macs</dd>
+            <dt>Size</dt><dd class="file-size">SIZE-TBD</dd>
+            <dt>SHA-256</dt><dd><code class="hash">SHA256-TBD</code></dd>
+          </dl>
+        </li>
+      </ul>
+      <p>Not sure which Mac you have? Choose <strong>Apple menu → About This Mac</strong>. It says "Chip: Apple M…" on Apple silicon, and "Processor: … Intel" on an Intel Mac.</p>
+      <h3 id="macos-open">Opening it</h3>
+      <ol class="list">
+        <li>Open the <code>.dmg</code> and drag <strong>Demios Desktop</strong> to <strong>Applications</strong>.</li>
+        <li>Open Demios Desktop. macOS says it can't check the app, and won't open it.</li>
+        <li><strong>On macOS 15 (Sequoia) and later:</strong> go to <strong>System Settings → Privacy &amp; Security</strong>, scroll down to the message about Demios Desktop, and select <strong>Open Anyway</strong>. Confirm with your password.</li>
+        <li><strong>On older macOS:</strong> in Applications, Control-click (or right-click) Demios Desktop, choose <strong>Open</strong>, then select <strong>Open</strong> again.</li>
+      </ol>
+      <p>You only need to do this once.</p>
+    </section>
+
+    <section aria-labelledby="windows" data-os="windows">
+      <h2 id="windows">Windows</h2>
+      <ul class="files">
+        <li class="file" data-os="windows" data-arch="x86" data-primary>
+          <a class="file-name" href="https://github.com/mimshavandi/demios-desktop/releases/download/TAG-TBD/Demios.Desktop_0.1.0_x64-setup.exe">Demios.Desktop_0.1.0_x64-setup.exe</a>
+          <dl>
+            <dt>For</dt><dd class="file-for">Windows 10 and 11, 64-bit: installer</dd>
+            <dt>Size</dt><dd class="file-size">SIZE-TBD</dd>
+            <dt>SHA-256</dt><dd><code class="hash">SHA256-TBD</code></dd>
+          </dl>
+        </li>
+        <li class="file" data-os="windows" data-arch="x86">
+          <a class="file-name" href="https://github.com/mimshavandi/demios-desktop/releases/download/TAG-TBD/Demios.Desktop_0.1.0_x64_en-US.msi">Demios.Desktop_0.1.0_x64_en-US.msi</a>
+          <dl>
+            <dt>For</dt><dd class="file-for">Windows 10 and 11, 64-bit: MSI package</dd>
+            <dt>Size</dt><dd class="file-size">SIZE-TBD</dd>
+            <dt>SHA-256</dt><dd><code class="hash">SHA256-TBD</code></dd>
+          </dl>
+        </li>
+      </ul>
+      <p>Most people want the <code>.exe</code> installer. The <code>.msi</code> is for managed computers.</p>
+      <h3 id="windows-open">Opening it</h3>
+      <ol class="list">
+        <li>Open the file you downloaded.</li>
+        <li>Windows shows <strong>"Windows protected your PC"</strong>. Select <strong>More info</strong>, then <strong>Run anyway</strong>.</li>
+        <li>Follow the installer.</li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="linux" data-os="linux">
+      <h2 id="linux">Linux</h2>
+      <ul class="files">
+        <li class="file" data-os="linux" data-arch="x86" data-primary>
+          <a class="file-name" href="https://github.com/mimshavandi/demios-desktop/releases/download/TAG-TBD/Demios.Desktop_0.1.0_amd64.AppImage">Demios.Desktop_0.1.0_amd64.AppImage</a>
+          <dl>
+            <dt>For</dt><dd class="file-for">Most distributions, 64-bit: AppImage</dd>
+            <dt>Size</dt><dd class="file-size">SIZE-TBD</dd>
+            <dt>SHA-256</dt><dd><code class="hash">SHA256-TBD</code></dd>
+          </dl>
+        </li>
+        <li class="file" data-os="linux" data-arch="x86">
+          <a class="file-name" href="https://github.com/mimshavandi/demios-desktop/releases/download/TAG-TBD/Demios.Desktop_0.1.0_amd64.deb">Demios.Desktop_0.1.0_amd64.deb</a>
+          <dl>
+            <dt>For</dt><dd class="file-for">Debian and Ubuntu, 64-bit: .deb package</dd>
+            <dt>Size</dt><dd class="file-size">SIZE-TBD</dd>
+            <dt>SHA-256</dt><dd><code class="hash">SHA256-TBD</code></dd>
+          </dl>
+        </li>
+      </ul>
+      <h3 id="linux-open">Opening it</h3>
+      <p><strong>AppImage:</strong> make it executable, then run it.</p>
+<pre><code>chmod +x Demios.Desktop_0.1.0_amd64.AppImage
+./Demios.Desktop_0.1.0_amd64.AppImage</code></pre>
+      <p><strong>.deb:</strong> install it with apt. Keep the <code>./</code> so apt uses the file.</p>
+<pre><code>sudo apt install ./Demios.Desktop_0.1.0_amd64.deb</code></pre>
+    </section>
+
+    <h2 id="check">Check your download</h2>
+    <p>Compare the SHA-256 of your file with the one listed above, or with <a href="https://github.com/mimshavandi/demios-desktop/releases/download/TAG-TBD/SHA256SUMS.txt">SHA256SUMS.txt</a> from the release. If they differ, don't open the file.</p>
+    <ul class="list">
+      <li>macOS: <code>shasum -a 256 Demios.Desktop_0.1.0_aarch64.dmg</code></li>
+      <li>Windows (PowerShell): <code>Get-FileHash .\Demios.Desktop_0.1.0_x64-setup.exe</code></li>
+      <li>Linux, in the folder with your download and <code>SHA256SUMS.txt</code>: <code>sha256sum --check --ignore-missing SHA256SUMS.txt</code></li>
+    </ul>
+
+    <h2 id="where">Where the files come from</h2>
+    <p>The installers are built from the public source code and published on <a href="https://github.com/mimshavandi/demios-desktop/releases/tag/TAG-TBD">GitHub Releases</a>, which also lists every file. Downloads come from GitHub, not from demios.io. See <a href="/privacy/#website">the privacy policy</a> for what that means. You can also <a href="/#get-it">build the app from source</a>.</p>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <ul>
+      <li><a href="/privacy/">Privacy</a></li>
+      <li><a href="/accessibility/">Accessibility</a></li>
+      <li><a href="https://github.com/mimshavandi/demios-desktop">Source code</a></li>
+      <li><a href="mailto:mahdi@demios.io">mahdi@demios.io</a></li>
+    </ul>
+    <p>© 2026 DigiNote Inc.</p>
+  </div>
+</footer>
+</body>
+</html>
