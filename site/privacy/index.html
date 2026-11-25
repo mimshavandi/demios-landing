@@ -38,7 +38,7 @@
   <article class="doc wrap wrap-narrow">
     <h1>Demios Desktop privacy policy</h1>
 
-    <p class="meta">Last updated: set on publication</p>
+    <p class="meta">Last updated: 25 November 2026</p>
 
     <h2 id="who-we-are">Who we are</h2>
     <p>Demios Desktop ("the app") is an open-source desktop app licensed under Apache-2.0. It is published by <strong>DigiNote, Inc.</strong>, which is responsible for this policy and is the controller for the processing described in <a href="#data-protection-gdpr">Data protection (GDPR)</a>. DigiNote, Inc. is also the provider of the app under the EU AI Act. App id: <code>io.demios.app</code>.</p>
@@ -79,6 +79,10 @@
     <p>The database holds:</p>
     <ul class="list">
       <li><strong>Conversations:</strong> title, messages, the model that answered, and timestamps.</li>
+      <li><strong>Projects:</strong> each project's name, the instructions you write for it, the list of files you added, and timestamps.</li>
+      <li><strong>Skill choices:</strong> which skill each chat uses.</li>
+      <li><strong>Project search index:</strong> passages from the text files you added to projects, where each passage is in its file and, once the search model is downloaded, numbers that describe each passage's meaning (embeddings). The index is built on this computer, and building it sends nothing anywhere.</li>
+      <li><strong>Answer sources:</strong> for each answer in a project's chats, which files and lines it was given, without their text.</li>
       <li><strong>Artifacts:</strong> the pages, apps, diagrams and documents a model makes in a chat, every version of them, which model or whether you made each version, and timestamps.</li>
       <li><strong>Settings:</strong> which model you chose for each task, the tool servers you added, and which local server commands you allowed to start. It stores only the <em>names</em> of their credentials, never the credentials themselves.</li>
       <li><strong>Tool history:</strong> for each tool call the app makes, the tool name, the arguments, the result or error, and timestamps. This history lets the app avoid repeating an action by accident.</li>
@@ -86,6 +90,8 @@
     <p>Other things stored locally:</p>
     <ul class="list">
       <li><strong>Interface preferences</strong>, for example whether the sidebar is open, in the app window's own storage.</li>
+      <li><strong>Project files:</strong> a copy of each file you add to a project, in the <code>project-files</code> folder inside the same app-data folder.</li>
+      <li><strong>Skills you write</strong>, if any: in the <code>skills</code> folder inside the same app-data folder.</li>
       <li><strong>Model files</strong> you download: <code>demios/models/</code> in your user data folder (<code>~/Library/Application Support</code> on macOS, <code>%LOCALAPPDATA%</code> on Windows, <code>~/.local/share</code> on Linux), or the folder set in <code>DN_MODELS_DIR</code>. <strong>Settings → General → About</strong> shows it. The <code>dn</code> command-line tool uses the same folder. GGUF models the app finds in your own Hugging Face cache are used where they are; the app never changes or deletes them.</li>
     </ul>
     <p>Nothing in these folders is uploaded anywhere by the app.</p>
@@ -101,6 +107,8 @@
     <p>When you add a key for Anthropic, OpenAI or Google Gemini and use one of their models, the app sends requests straight from your computer to that provider (<code>api.anthropic.com</code>, <code>api.openai.com</code>, <code>generativelanguage.googleapis.com</code>), under your account with them. A request contains:</p>
     <ul class="list">
       <li>the messages in the conversation, including any tool results in it,</li>
+      <li>in a project's chats, the project's instructions and the passages from the project's files that were found for that question,</li>
+      <li>the instructions of the skill chosen for the chat, if any,</li>
       <li>the list of tools available to the model,</li>
       <li>your API key, which the provider uses to identify you.</li>
     </ul>
@@ -121,7 +129,7 @@
       <li><strong>Remote servers</strong> are online services. The app connects to them over HTTPS. If a server needs you to sign in, <strong>Sign in</strong> opens its sign-in page in your browser, and the server sees the app as the client "Demios Desktop". <strong>Sign out</strong> deletes the stored sign-in.</li>
     </ul>
     <p>When the model calls a tool, the server receives the <strong>arguments of that call</strong>. These can contain parts of your conversation. The tool's answer comes back into the conversation, so it is also sent to your AI provider if you use one.</p>
-    <p>Tools that change something ask for your approval first: every time, or, for tools that only change local data, once per chat if you choose. Tools a server marks as read-only run <strong>without asking</strong>, so their arguments are sent without a prompt. A remote server is never trusted to mark its own tools read-only, so none of its tools run without asking. Each server's own policy applies.</p>
+    <p>Tools that change something ask for your approval first: every time, or, for tools that only change local data, once per chat if you choose. Tools a server marks as read-only run <strong>without asking</strong>, so their arguments are sent without a prompt. A remote server is never trusted to mark its own tools read-only, so its tools ask before running unless you choose otherwise for a tool. Letting a risky tool run without asking needs a confirmation. Each server's own policy applies.</p>
 
     <h3 id="artifacts">Artifacts</h3>
     <p>Artifacts run in a sealed-off frame with no network access. If an artifact tries to use the network, you can allow it for that one artifact after a confirmation that explains the risk; it can then send what it shows, including text from the chat, to websites it chooses. The permission is turned off again when the model writes a new version.</p>
@@ -138,10 +146,11 @@
     <h2 id="choices">Your choices and how to delete data</h2>
     <p>Because your data is on your own computer, you control it:</p>
     <ul class="list">
-      <li><strong>Delete a chat:</strong> select the delete button next to it in the sidebar. You can undo this for 10 seconds. At the next start of the app, its messages, artifacts and tool history are removed for good. Only the chat's internal id and the time it was deleted are kept, with no title, model or content.</li>
+      <li><strong>Delete a chat:</strong> select the delete button next to it in the sidebar. You can undo this for 10 seconds. At the next start of the app, its messages, artifacts, tool history, skill choice and answer sources are removed for good. Only the chat's internal id and the time it was deleted are kept, with no title, model or content.</li>
+      <li><strong>Delete a project or a project file:</strong> on the project's page, select <strong>Delete project</strong>, or the remove button next to a file. You can undo this for 10 seconds. At the next start of the app, the project with its chats, or the file, is removed for good, including the file copies and their passages in the search index.</li>
       <li><strong>Remove a tool server:</strong> go to <strong>Settings → Models → Tool servers</strong> and select the remove button next to it. After a confirmation, this deletes its settings, the secrets and sign-in saved for it in your keychain, and the "Allow in this chat" approvals for its tools. Chats that used its tools keep their history.</li>
       <li><strong>Remove an API key:</strong> go to <strong>Settings → Models → Provider keys</strong> and select <strong>Remove key</strong>. The key is removed from the keychain straight away and held in memory for a few seconds, so you can undo.</li>
-      <li><strong>Delete everything:</strong> go to <strong>Settings → General</strong> and select <strong>Delete all local data</strong>. After a confirmation that lists what will go, it deletes the database (every chat, including recently deleted ones and their deletion records, every artifact, your settings and tool history), downloaded models, the keys, tokens and sign-ins Demios saved in your keychain (including your Hugging Face token), and the app window's own storage. This can't be undone.</li>
+      <li><strong>Delete everything:</strong> go to <strong>Settings → General</strong> and select <strong>Delete all local data</strong>. After a confirmation that lists what will go, it deletes the database (every chat, including recently deleted ones and their deletion records, every artifact, every project with its instructions, the skill chosen for each chat, the project search index and answer sources, your settings and tool history), the copies of files you added to projects, downloaded models, the keys, tokens and sign-ins Demios saved in your keychain (including your Hugging Face token), and the app window's own storage. This can't be undone. Delete all doesn't remove skills you wrote yourself in the skills folder; delete that folder to remove them.</li>
       <li><strong>Uninstalling</strong> removes the app but not your data folder, your models or your keychain entries. Use <strong>Delete all local data</strong> first, or delete them yourself.</li>
       <li><strong>Data held by providers, Hugging Face, tool servers or GitHub</strong> is controlled by them. Use their tools or contact them.</li>
     </ul>
