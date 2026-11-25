@@ -72,18 +72,20 @@
     <section class="section" aria-labelledby="today">
       <h2 id="today">What it does today</h2>
       <ul class="list">
-        <li>Chat with streamed answers, with Markdown and highlighted code blocks. Stop an answer mid-way (<kbd>⌘.</kbd> or <kbd>Ctrl+.</kbd>) and retry it.</li>
+        <li>Chat with streamed answers, with Markdown and highlighted code blocks. Stop an answer mid-way (<kbd>⌘.</kbd> or <kbd>Ctrl+.</kbd>) and retry it. Links in answers open in your browser after a system dialog shows the full address.</li>
         <li>Keep conversations on your computer between launches, and delete them with Undo.</li>
         <li>Run models on your computer with llama.cpp: download one of 12 open models from a built-in catalogue. Each shows whether it fits your machine and its licence. Downloads can be paused, resume after an interruption, and are checked against their SHA-256.</li>
-        <li>Add models from Hugging Face in the app: search GGUF models, and see each size's fit and the model's licence before you download. Downloads are checked against their SHA-256 and resume after an interruption. Gated models use your Hugging Face token, kept in your keychain. Models already in your Hugging Face cache are used in place.</li>
+        <li>Add models from Hugging Face in the app: search GGUF models, and see each size's fit and the model's licence before you download. Downloads are checked against their SHA-256 and resume after an interruption. Gated models use your Hugging Face token, kept in your keychain. Models already in your Hugging Face cache are used in place. A <code>demios://models/add</code> link opens the same check in the app; nothing downloads until you choose to.</li>
         <li>Use your own API key for Anthropic, OpenAI or Google Gemini.</li>
         <li>Artifacts: documents, code and small apps the model makes open in a side pane. They run in a sandbox with no network unless you allow it for that version. Each change is a new version you can go back to, and each is labelled "AI-generated · Made by" the model that wrote it. Not available on Windows yet.</li>
-        <li>Add tool servers (MCP) in <strong>Settings → Models → Tool servers</strong>: a program on your computer or a remote server over HTTPS, with sign-in for servers that need it.</li>
+        <li>Add tool servers (MCP) in <strong>Settings → Models → Tool servers</strong>: a program on your computer or a remote server over HTTPS, with sign-in for servers that need it. See each server's tools and their risk, and choose per tool whether it asks.</li>
         <li>See where your data goes in <strong>Settings → General</strong>, and remove everything with <strong>Delete all local data</strong>, after a confirmation that lists what will go.</li>
         <li>A notice on first run, and a line under the message box, say that answers come from the model you chose and can be wrong.</li>
         <li>Light and dark appearance that follows your system, and keyboard shortcuts for the main actions.</li>
         <li>Report a problem, or a single answer, through a prefilled form on GitHub. Nothing from your chats is sent.</li>
-        <li>The <code>dn</code> command-line tool: run a model, check whether it fits, and browse and download models from Hugging Face.</li>
+        <li>Read the licence of every package shipped with the app in <strong>Settings → General → About → Open-source licences</strong>.</li>
+        <li>An answer from a provider that stops responding ends with an error you can retry, instead of waiting forever.</li>
+        <li>The <code>dn</code> command-line tool: run a model, check whether it fits, browse and download models from Hugging Face, and open <code>demios://</code> add-model links.</li>
       </ul>
     </section>
 
@@ -100,7 +102,8 @@
       <ul class="list">
         <li>Tools a server marks as read-only run without asking.</li>
         <li>Every other tool asks first. A card in the chat shows the exact arguments, and the tool runs only after you choose <strong>Allow once</strong>. Tools that only change local data can be allowed for the whole chat. If you don't answer within 10 minutes, the tool doesn't run.</li>
-        <li>A remote server isn't trusted to call its own tools harmless, so none of its tools run without asking.</li>
+        <li>A remote server isn't trusted to call its own tools harmless, so its tools ask first unless you choose otherwise.</li>
+        <li>You can change whether each tool asks. Letting a tool that acts outside the app, can delete or overwrite, or is sensitive run without asking needs a confirmation first. If a server adds or changes a tool, that tool asks before every use until you mark it reviewed.</li>
         <li>A tool server on your computer needs your OK before it starts. A system dialog shows the exact command, and asks again if the command changes. It runs with your permissions, so add only programs you trust.</li>
       </ul>
       <p>More detail is in the <a href="/privacy/">privacy policy</a>.</p>
@@ -110,8 +113,8 @@
       <h2 id="next">Coming next</h2>
       <p class="section-lead">Not in the app yet:</p>
       <ul class="list">
+        <li>Artifacts on Windows. They're saved there, but can't be shown yet.</li>
         <li>Connecting the app to an OpenAI-compatible server, such as Ollama. The <code>dn</code> tool can already do this.</li>
-        <li>Opening <code>demios://</code> add-model links in the app. The <code>dn</code> tool can already do this.</li>
         <li>Signed installers for macOS, Windows and Linux.</li>
       </ul>
     </section>
