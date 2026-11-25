@@ -1,0 +1,18 @@
+{
+  "repo": "mimshavandi/demios-desktop",
+  "commit": "268dc2ed007370c3c19e25fa83722c60e169cd4a",
+  "files": {
+    "site/assets/tokens.css": {
+      "from": "ui/design-tokens/tokens.css",
+      "sha256": "8039cb45ec73d117ec84289d86e104436162919572a856b6ab748b4235509f18"
+    },
+    "site/assets/app-light.jpg": {
+      "from": "apps/desktop/docs/screenshots/light-artifact-pane.jpg",
+      "sha256": "1f3bb9399756a9ecffcc75628e62a2feb85eb1999257611b6ef6b9a129c96e58"
+    },
+    "site/assets/app-dark.jpg": {
+      "from": "apps/desktop/docs/screenshots/dark-artifact-pane.jpg",
+      "sha256": "5808e154bdb60437c45082d42e8864367db2e6145f0298f37cd3f5403cc0ba67"
+    }
+  }
+}
