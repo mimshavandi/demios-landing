@@ -55,7 +55,7 @@
     <ul class="list">
       <li>It's an early preview. Expect rough edges, and please <a href="https://github.com/mimshavandi/demios-desktop/issues">report problems</a>.</li>
       <li>It doesn't update itself yet. To get a newer version, download it from this page and install it over the old one.</li>
-      <li>Signed versions from the app stores will replace the preview later. Moving to one needs one reinstall.</li>
+      <li>Signed builds will come later and replace the preview. Moving to one may need one reinstall.</li>
     </ul>
 
     <section aria-labelledby="macos">
@@ -88,12 +88,7 @@
           <p class="file-title">Windows 10 and 11, 64-bit: installer <span class="file-type">.exe</span></p>
           <p class="file-status"><span class="badge">Coming shortly</span></p>
         </li>
-        <li class="file" data-os="windows">
-          <p class="file-title">Windows 10 and 11, 64-bit: MSI package <span class="file-type">.msi</span></p>
-          <p class="file-status"><span class="badge">Coming shortly</span></p>
-        </li>
       </ul>
-      <p>Most people want the <code>.exe</code> installer. The <code>.msi</code> is for managed computers.</p>
       <h3 id="windows-open">Opening it</h3>
       <ol class="list">
         <li>Open the file you downloaded.</li>
@@ -113,6 +108,10 @@
           <p class="file-title">Debian and Ubuntu, 64-bit <span class="file-type">.deb</span></p>
           <p class="file-status"><span class="badge">Coming shortly</span></p>
         </li>
+        <li class="file" data-os="linux">
+          <p class="file-title">Fedora and openSUSE, 64-bit <span class="file-type">.rpm</span></p>
+          <p class="file-status"><span class="badge">Coming shortly</span></p>
+        </li>
       </ul>
       <h3 id="linux-open">Opening it</h3>
       <p><strong>AppImage:</strong> make it executable, then run it.</p>
@@ -120,6 +119,10 @@
 ./Demios*.AppImage</code></pre>
       <p><strong>.deb:</strong> install it with apt. Keep the <code>./</code> so apt uses the file.</p>
 <pre><code>sudo apt install ./Demios*.deb</code></pre>
+      <p><strong>.rpm:</strong> install it with dnf on Fedora, or zypper on openSUSE. Keep the <code>./</code> so the file is used.</p>
+<pre><code>sudo dnf install ./Demios*.rpm</code></pre>
+<pre><code>sudo zypper install ./Demios*.rpm</code></pre>
+      <p>The preview packages aren't signed, so apt, dnf or zypper may warn about that. Before you continue, <a href="#check">check the file's SHA-256</a>.</p>
     </section>
 
     <h2 id="check">Check your download</h2>
