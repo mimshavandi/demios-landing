@@ -3,6 +3,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Daily rebuild, so the Get it page's download counter stays current (scripts/render-downloads.mjs).
+  schedule:
+    - cron: "17 4 * * *"
 permissions:
   contents: read
 concurrency:
@@ -16,6 +19,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Reads demios-desktop's public release statistics and renders the counter into the page.
+      # Nothing is committed; the numbers exist only in this build's artifact.
+      - name: Render download counts
+        run: node scripts/render-downloads.mjs
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Check the built site
+        run: node scripts/check-site.mjs
       - uses: actions/upload-pages-artifact@v5
         with:
           path: site

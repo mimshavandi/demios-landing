@@ -286,6 +286,35 @@ ul.actions { list-style: none; padding: 0; }
 ul.actions > li + li { margin-top: 0; }
 .doc ol.list { padding-left: var(--dn-space-6); }
 
+/* Download counter (rendered at build time by scripts/render-downloads.mjs). */
+.downloads {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--dn-space-1) var(--dn-space-4);
+  margin: 0 0 var(--dn-space-6);
+  padding: var(--dn-space-3) var(--dn-space-4);
+  background: var(--dn-color-surface);
+  border: 1px solid var(--dn-color-border);
+  border-radius: var(--dn-radius-lg);
+}
+.doc .downloads-total { margin: 0; font-size: var(--dn-text-lg); line-height: var(--dn-leading-lg); }
+.downloads .num { font-variant-numeric: tabular-nums; }
+.downloads-split {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dn-space-1) var(--dn-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--dn-text-base);
+  line-height: var(--dn-leading-base);
+  color: var(--dn-color-text-muted);
+}
+.downloads-split li + li { margin-top: 0; }
+.downloads-split .num { color: var(--dn-color-text); font-weight: var(--dn-weight-medium); }
+.downloads-note { flex-basis: 100%; margin: 0; font-size: var(--dn-text-sm); line-height: var(--dn-leading-sm); color: var(--dn-color-text-subtle); }
+
 /* Reading pages */
 .doc { padding-top: var(--dn-space-12); padding-bottom: var(--dn-space-12); }
 .doc h2 { margin-top: var(--dn-space-10); }
