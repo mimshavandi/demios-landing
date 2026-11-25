@@ -204,3 +204,5 @@ thead th { border-bottom-color: var(--dn-color-border-strong); }
 caption { text-align: left; color: var(--dn-color-text-muted); padding-bottom: var(--dn-space-2); }
 
 main:focus { outline: none; }
+
+address { font-style: normal; }
