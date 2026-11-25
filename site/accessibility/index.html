@@ -39,7 +39,7 @@
     <h1>Demios Desktop accessibility statement</h1>
 
     <div class="callout callout-warning" role="note">
-      <p><strong>Draft: pending owner approval.</strong> The owner approves the final text before it is published at demios.io/accessibility and linked from the app and the store listings.</p>
+      <p><strong>Draft: pending owner approval.</strong> The owner approves the final text before it is published at demios.io/accessibility and linked from the app and from demios.io.</p>
     </div>
 
     <p class="meta">Last reviewed: set on publication · App version: 0.1.0</p>
@@ -84,8 +84,9 @@
     <h2 id="gaps">Known gaps</h2>
     <ul class="list">
       <li><strong>macOS:</strong> WKWebView has no WebDriver, so all macOS checks are manual, from a release checklist.</li>
-      <li><strong>Screen readers:</strong> no full pass has been done yet with VoiceOver (macOS), NVDA or Narrator (Windows), or Orca (Linux). Until one has, we will not tick any store's "accessible" box.</li>
+      <li><strong>Screen readers:</strong> no full pass has been done yet with VoiceOver (macOS), NVDA or Narrator (Windows), or Orca (Linux). We won't claim the app is accessible until a full screen-reader pass is done.</li>
       <li><strong>Generated content:</strong> answers and artifacts (pages, apps and diagrams the model writes) are written by the AI model you choose. We cannot guarantee that they are accessible: an artifact may lack alt text, headings, labels or enough contrast. You can ask the model to fix this.</li>
+      <li><strong>Artifacts on Windows</strong> are shown in a separate view on top of the pane. Screen-reader and focus behaviour there hasn't been checked by hand yet. Tab moves from an artifact back into the app.</li>
       <li><strong>Not yet checked:</strong> high-contrast and forced-colours modes, zoom to 200%, and reduced motion.</li>
     </ul>
 
