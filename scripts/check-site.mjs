@@ -4,10 +4,12 @@
 //   unique ids, one <h1>, no skipped heading levels, alt on every <img>, no inline scripts.
 // - Links: every internal href/src resolves to a file in site/, and every #fragment exists.
 // - Privacy: nothing is loaded from another origin (stylesheets, scripts, images, iframes…).
-import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
+// - Design: copied app tokens match scripts/design-source.json; no raw style values (ratchet).
+import { readFileSync, readdirSync, statSync, existsSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { join, relative, dirname, resolve } from "node:path";
 
-const ROOT = resolve(process.argv[2] ?? "site");
+const ROOT = resolve(process.argv.slice(2).find((a) => !a.startsWith("--")) ?? "site");
 const VOID = new Set(["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"]);
 // Elements whose end tag may be omitted in valid HTML; we still write them, but don't fail on it.
 const OPTIONAL_END = new Set(["li", "p", "td", "th", "tr", "thead", "tbody", "dt", "dd", "option"]);
@@ -123,6 +125,64 @@ for (const file of pages) {
 for (const f of files.filter((f) => f.endsWith(".css"))) {
   const css = readFileSync(f, "utf8");
   if (/@import|url\(\s*['"]?(https?:)?\/\//i.test(css)) fail(f, "stylesheet imports or loads a remote resource");
+}
+
+// Design tokens: the copied app files must match scripts/design-source.json (no hand edits;
+// re-run scripts/sync-design.mjs to update them).
+const sourceFile = resolve(dirname(new URL(import.meta.url).pathname), "design-source.json");
+if (!existsSync(sourceFile)) errors.push("scripts/design-source.json is missing");
+else {
+  const source = JSON.parse(readFileSync(sourceFile, "utf8"));
+  for (const [to, { sha256 }] of Object.entries(source.files)) {
+    const f = resolve(ROOT, "..", to);
+    if (!existsSync(f)) { fail(f, "is missing (listed in scripts/design-source.json)"); continue; }
+    if (createHash("sha256").update(readFileSync(f)).digest("hex") !== sha256)
+      fail(f, `differs from ${source.repo}@${source.commit.slice(0, 7)}; don't edit it, run scripts/sync-design.mjs`);
+  }
+}
+
+// Style ratchet, like the app's lint-ui (T-DES-02): colours, type sizes, spacing, radii, shadows
+// and z-order come from tokens, never raw values. Applies to every stylesheet except the copied
+// tokens.css, and to style="" attributes. scripts/style-baseline.json holds the allowed count per
+// file and rule; a count may only go down. Hairlines (1px) and media queries are allowed.
+const STYLE_RULES = {
+  "raw-color": (l) => /(?<![\w&/])#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{3,4})\b(?![\w-])|\b(?:rgba?|hsla?)\(/.test(l),
+  "raw-font-size": (l) => /\bfont(?:-size)?\s*:[^;]*?(?<![\w.-])\d*\.?\d+(?:px|rem|em|pt)\b/.test(l),
+  "raw-line-height": (l) => /\bline-height\s*:\s*(?!var\(|inherit|normal)[\d.]/.test(l),
+  "raw-spacing": (l) => [...l.matchAll(/\b(?:margin|padding|gap|row-gap|column-gap|inset|top|left|right|bottom)(?:-[a-z]+)?\s*:([^;}]*)/g)]
+    .some((d) => [...d[1].matchAll(/(?<![\w.-])-?(\d*\.?\d+)(px|rem|em)\b/g)].some((x) => x[2] !== "px" || Number(x[1]) > 1)),
+  "raw-size": (l) => /\b(?:min-|max-)?(?:width|height)\s*:[^;]*?(?<![\w.-])\d*\.?\d+(?:px|rem|em)\b/.test(l),
+  "raw-radius": (l) => /\bborder(?:-[a-z]+)*-radius\s*:[^;]*?(?<![\w.-])\d*[1-9]\d*(?:px|rem|em)/.test(l),
+  "raw-z-index": (l) => /\bz-index\s*:\s*-?\d+/.test(l),
+  "raw-shadow": (l) => [...l.matchAll(/\bbox-shadow\s*:([^;}]*)/g)].some((m) => !/^\s*(?:none|inherit|initial|unset|var\()/.test(m[1]) && /\d/.test(m[1])),
+};
+const counts = {};
+const count = (file, text) => {
+  const key = relative(resolve(ROOT, ".."), file);
+  const lines = text.replace(/\/\*[\s\S]*?\*\//g, (c) => c.replace(/[^\n]/g, " ")).split("\n")
+    .filter((l) => !/^\s*@media\b/.test(l));
+  for (const [rule, test] of Object.entries(STYLE_RULES)) {
+    const n = lines.filter((l) => test(l)).length;
+    if (n) (counts[key] ??= {})[rule] = n;
+  }
+};
+for (const f of files.filter((f) => f.endsWith(".css") && !f.endsWith("/tokens.css"))) count(f, readFileSync(f, "utf8"));
+for (const f of pages) {
+  const inline = [...readFileSync(f, "utf8").matchAll(/\sstyle\s*=\s*"([^"]*)"/g)].map((m) => m[1].replace(/;/g, ";\n")).join("\n");
+  if (inline) count(f, inline);
+}
+const baselineFile = resolve(dirname(new URL(import.meta.url).pathname), "style-baseline.json");
+if (process.argv.includes("--update-baseline")) {
+  writeFileSync(baselineFile, JSON.stringify(counts, null, 2) + "\n");
+  console.log("Wrote scripts/style-baseline.json.");
+}
+const baseline = existsSync(baselineFile) ? JSON.parse(readFileSync(baselineFile, "utf8")) : {};
+for (const [file, rules] of Object.entries(counts)) for (const [rule, n] of Object.entries(rules)) {
+  const allowed = baseline[file]?.[rule] ?? 0;
+  if (n > allowed) errors.push(`${file}: ${n} × ${rule} (allowed ${allowed}); use a --dn-* token`);
+}
+for (const [file, rules] of Object.entries(baseline)) for (const [rule, allowed] of Object.entries(rules)) {
+  if ((counts[file]?.[rule] ?? 0) < allowed) console.log(`! ${file}: ${rule} is down to ${counts[file]?.[rule] ?? 0} (baseline ${allowed}); lower the baseline with --update-baseline`);
 }
 
 if (!existsSync(join(ROOT, "CNAME"))) errors.push("site/CNAME is missing");
