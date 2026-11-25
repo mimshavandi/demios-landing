@@ -26,7 +26,7 @@
     <a class="brand" href="/"><img src="/assets/icon-128.png" alt="" width="28" height="28">Demios</a>
     <nav class="site-nav" aria-label="Main">
       <ul>
-        <li><a href="#get-it">Get it</a></li>
+        <li><a href="/download/">Get it</a></li>
         <li><a href="/privacy/">Privacy</a></li>
         <li><a href="https://github.com/mimshavandi/demios-desktop">Source code</a></li>
       </ul>
@@ -41,10 +41,10 @@
         <h1 id="hero-title">Demios Desktop</h1>
         <p class="hero-text">An open-source desktop app for chatting with AI models you choose: one running on your own computer, or a provider you reach with your own API key. No account needed.</p>
         <div class="actions">
-          <a class="button button-primary" href="#get-it">Build from source</a>
+          <a class="button button-primary" href="/download/">Get it: preview coming shortly</a>
           <a class="button button-secondary" href="https://github.com/mimshavandi/demios-desktop">View the code on GitHub</a>
         </div>
-        <p class="status-note">Early preview (version 0.1.0) for macOS, Windows and Linux. There are no installers yet: a preview download is coming soon. Until then, you can build it from source.</p>
+        <p class="status-note">Early preview (version 0.1.0) for macOS, Windows and Linux. Preview installers are coming shortly. Until then, you can <a href="https://github.com/mimshavandi/demios-desktop#install">build it from source</a>.</p>
       </div>
       <figure class="hero-shot">
         <picture>
@@ -125,36 +125,6 @@
         <li>Connecting the app to an OpenAI-compatible server, such as Ollama. The <code>dn</code> tool can already do this.</li>
         <li>Signed installers for macOS, Windows and Linux.</li>
       </ul>
-    </section>
-
-    <section class="section" aria-labelledby="get-it">
-      <h2 id="get-it" tabindex="-1">Get it</h2>
-      <h3>Releases</h3>
-      <p>There are no releases or signed installers yet. When the first one is out, it will be on <a href="https://github.com/mimshavandi/demios-desktop/releases">GitHub Releases</a>.</p>
-
-      <h3>Build from source</h3>
-      <p>You need:</p>
-      <ul class="list">
-        <li><strong>Rust</strong> 1.89 or newer (stable, with <code>rustfmt</code> and <code>clippy</code>).</li>
-        <li><strong>Node.js</strong> 22 and npm.</li>
-        <li><strong>CMake and a C/C++ compiler</strong>: llama.cpp, which runs local models, is compiled from source.</li>
-        <li><strong>Platform webview libraries:</strong>
-          <ul class="list">
-            <li>macOS: Xcode Command Line Tools (<code>xcode-select --install</code>).</li>
-            <li>Linux (Debian/Ubuntu): <code>sudo apt-get install libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev libxdo-dev libssl-dev</code></li>
-            <li>Windows: the WebView2 runtime (included with Windows 10 and 11) and the Visual Studio C++ build tools.</li>
-          </ul>
-        </li>
-      </ul>
-      <p>Then build and run:</p>
-<pre><code>git clone https://github.com/mimshavandi/demios-desktop.git
-cd demios-desktop/apps/desktop
-npm ci
-
-npm run dev:app      # app window with a built-in test model, no key or download needed
-npm run tauri dev    # app window with no model: connect one in Settings
-npm run tauri build  # optimised build; the output is in target/release/bundle</code></pre>
-      <p>The test model in <code>dev:app</code> gives canned answers and is never part of an optimised build. The <a href="https://github.com/mimshavandi/demios-desktop#readme">README</a> and the <a href="https://github.com/mimshavandi/demios-desktop/tree/main/docs/user">user guide</a> have the details.</p>
     </section>
 
     <section class="section" aria-labelledby="open-source">

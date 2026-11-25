@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Zero-dependency checks for the static site in site/ (run: node scripts/check-site.mjs).
 // - HTML: doctype, <html lang>, charset, viewport, title, meta description, balanced tags,
-//   unique ids, one <h1>, no skipped heading levels, alt on every <img>, no inline scripts.
+//   unique ids, one <h1>, no skipped heading levels, alt on every <img>, no inline scripts or
+//   handlers (a page may load a script file from site/assets/, which must not use the network).
 // - Links: every internal href/src resolves to a file in site/, and every #fragment exists.
 // - Privacy: nothing is loaded from another origin (stylesheets, scripts, images, iframes…).
 // - Design: copied app tokens match scripts/design-source.json; no raw style values (ratchet).
@@ -82,7 +83,7 @@ for (const file of pages) {
       ids.add(t.attrs.id);
     }
     if (t.name === "img" && t.attrs.alt === undefined) fail(file, `<img src="${t.attrs.src}"> has no alt`);
-    if (t.name === "script") fail(file, "scripts are not allowed on this site");
+    if (t.name === "script" && !(t.attrs.src?.startsWith("/assets/") && t.attrs.src.endsWith(".js"))) fail(file, "only script files from /assets/ are allowed, no inline scripts");
     if (Object.keys(t.attrs).some((a) => a.startsWith("on"))) fail(file, `inline event handler in ${t.raw}`);
   }
   idsByFile.set(file, ids);
@@ -125,6 +126,16 @@ for (const file of pages) {
 for (const f of files.filter((f) => f.endsWith(".css"))) {
   const css = readFileSync(f, "utf8");
   if (/@import|url\(\s*['"]?(https?:)?\/\//i.test(css)) fail(f, "stylesheet imports or loads a remote resource");
+}
+
+// Script files: no inline content in pages (checked above), and no network or storage use.
+for (const f of files.filter((f) => f.endsWith(".js"))) {
+  const js = readFileSync(f, "utf8").replace(/^\s*\/\/.*$/gm, "");
+  const hit = js.match(/fetch\s*\(|XMLHttpRequest|sendBeacon|WebSocket|EventSource|import\s*\(|https?:\/\/|document\.cookie|localStorage|sessionStorage/);
+  if (hit) fail(f, `script uses the network or browser storage: ${hit[0]}`);
+}
+for (const file of pages) {
+  if (/<script\b[^>]*>[^<]+<\/script>/i.test(readFileSync(file, "utf8"))) fail(file, "inline script content");
 }
 
 // Design tokens: the copied app files must match scripts/design-source.json (no hand edits;
