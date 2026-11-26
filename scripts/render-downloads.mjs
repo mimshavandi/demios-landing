@@ -70,7 +70,7 @@ export function block(stats, updatedAt) {
         <li>Windows <span class="num">${fmt(o.windows)}</span></li>
         <li>Linux <span class="num">${fmt(o.linux)}</span></li>
       </ul>
-      <p class="downloads-note">All releases, from GitHub's public release statistics. Updated daily; last on <time datetime="${d.toISOString()}">${day}</time>.</p>
+      <p class="downloads-note">All releases, from GitHub's public release statistics. Updated every 6 hours; last on <time datetime="${d.toISOString()}">${day}</time>.</p>
     </section>`;
 }
 
