@@ -3,9 +3,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  # Daily rebuild, so the Get it page's download counter stays current (scripts/render-downloads.mjs).
+  # Rebuild every 6 hours, so the Get it page's download counter stays current (scripts/render-downloads.mjs).
   schedule:
-    - cron: "17 4 * * *"
+    - cron: "17 */6 * * *"
 permissions:
   contents: read
 concurrency:
