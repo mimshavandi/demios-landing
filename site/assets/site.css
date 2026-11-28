@@ -1,4 +1,4 @@
-/* demios.io styles. Every colour, type size, space, radius, shadow and z-order comes from
+/* almend.ai styles. Every colour, type size, space, radius, shadow and z-order comes from
    tokens.css: the app's generated tokens, copied by scripts/sync-design.mjs (source commit in
    scripts/design-source.json). check-site fails on raw values here (a ratchet, like the app's
    lint-ui). Widths are built from the app's layout tokens. Media queries can't use variables,
