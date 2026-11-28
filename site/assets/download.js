@@ -1,4 +1,4 @@
-// demios.io download page: points the visitor to the installer for their computer.
+// almend.ai download page: points the visitor to the installer for their computer.
 // Progressive enhancement only: every installer is listed in the page without this script.
 // It runs in the browser, reads only navigator, and sends nothing anywhere.
 // While the preview isn't out, files have no link yet; the box then says so instead of
